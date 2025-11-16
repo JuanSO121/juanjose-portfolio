@@ -1,43 +1,55 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Code2, Database, Wrench, Users, Palette, Box } from "lucide-react";
 
 const skillCategories = [
   {
+    icon: Code2,
     category: "Lenguajes",
     skills: ["Python", "Java", "JavaScript", "TypeScript", "C++"],
+    color: "from-blue-500 to-cyan-500",
   },
   {
+    icon: Box,
     category: "Frameworks",
     skills: ["TensorFlow", "Flask", "FastAPI", "Spring Boot", "Angular", "Ionic", "Flutter"],
+    color: "from-purple-500 to-pink-500",
   },
   {
+    icon: Database,
     category: "Bases de Datos",
     skills: ["MySQL", "PostgreSQL", "MongoDB"],
+    color: "from-green-500 to-emerald-500",
   },
   {
+    icon: Wrench,
     category: "Herramientas",
     skills: ["Docker", "Git", "GitHub", "VSCode"],
+    color: "from-orange-500 to-red-500",
   },
   {
+    icon: Users,
     category: "Metodologías",
     skills: ["Scrum", "Agile"],
+    color: "from-indigo-500 to-blue-500",
   },
   {
+    icon: Palette,
     category: "Diseño/UX",
     skills: ["Figma", "Illustrator", "Blender"],
+    color: "from-pink-500 to-rose-500",
   },
 ];
 
 export const SkillsSection = () => {
   return (
-    <section id="skills" className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+    <section id="skills" className="py-20 px-6 lg:px-12 bg-secondary/30">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12 animate-fade-up">
+          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Competencias Técnicas
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tecnologías y herramientas que domino para crear soluciones innovadoras
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            Stack tecnológico completo para desarrollo full-stack e IA
           </p>
         </div>
 
@@ -45,25 +57,28 @@ export const SkillsSection = () => {
           {skillCategories.map((category, index) => (
             <Card
               key={index}
-              className="hover:shadow-card-hover transition-all duration-300 animate-fade-up border-border bg-card"
+              className="p-6 hover:shadow-2xl transition-all duration-500 animate-fade-up border-border group hover:-translate-y-2"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader>
-                <CardTitle className="text-xl text-center">{category.category}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {category.skills.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="secondary"
-                      className="text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
+              <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${category.color} mb-4 group-hover:scale-110 transition-transform`}>
+                <category.icon size={24} className="text-white" />
+              </div>
+              
+              <h3 className="text-xl font-bold mb-4 text-foreground">
+                {category.category}
+              </h3>
+              
+              <div className="space-y-2">
+                {category.skills.map((skill, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                    <span className="text-sm">{skill}</span>
+                  </div>
+                ))}
+              </div>
             </Card>
           ))}
         </div>
